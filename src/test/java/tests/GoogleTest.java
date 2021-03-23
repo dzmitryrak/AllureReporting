@@ -12,6 +12,6 @@ public class GoogleTest extends BaseTest {
     @Issue("dmitryrak11")
     @TmsLink("dmitryrak11")
     public void googleTest() {
-        steps.searchForKeyWord("teachmeskills");
+        steps.searchForKeyWord(System.getenv("keyword"));
     }
 }
