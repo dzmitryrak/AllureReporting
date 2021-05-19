@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import steps.GoogleSteps;
 import utils.CapabilitiesGenerator;
+import utils.PropertyReader;
 
 @Log4j2
 @Listeners(TestListener.class)
@@ -18,9 +19,17 @@ public class BaseTest {
     
     public WebDriver driver;
     protected GoogleSteps steps;
-    
+    public String user;
+    public String password;
+
+
     @BeforeMethod(description = "Opening Chrome Driver")
     public void createDriver(ITestContext context) {
+
+        user = System.getenv().getOrDefault("user", PropertyReader.getProperty("user"));
+        System.out.println("READ USER: " + user);
+        password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
+
         try {
             driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         } catch (SessionNotCreatedException ex) {
