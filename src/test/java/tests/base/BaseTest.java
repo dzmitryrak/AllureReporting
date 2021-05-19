@@ -26,8 +26,9 @@ public class BaseTest {
     @BeforeMethod(description = "Opening Chrome Driver")
     public void createDriver(ITestContext context) {
 
+        String blabla = System.getProperty("user", PropertyReader.getProperty("user"));
         user = System.getenv().getOrDefault("user", PropertyReader.getProperty("user"));
-        System.out.println("READ USER: " + user);
+        System.out.println("READ USER: " + blabla);
         password = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
 
         try {
