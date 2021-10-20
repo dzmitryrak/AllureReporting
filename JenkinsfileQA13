@@ -8,12 +8,13 @@ pipeline {
     }
     parameters {
         booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Headless browser')
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
     }
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/dzmitryrak/AllureReporting.git'
+                git branch: "${params.BRANCH}", url: 'https://github.com/dzmitryrak/AllureReporting.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean test -Dheadless=${params.HEADLESS}"
