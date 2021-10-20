@@ -19,8 +19,6 @@ class BasePage {
         } catch (NoSuchElementException ex) {
             Assert.fail("Элемент не найден по локатору " + locator);
             log.error(ex.getLocalizedMessage());
-        } catch (TimeoutException ex) {
-            
         }
         return null;
     }
