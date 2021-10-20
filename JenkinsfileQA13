@@ -6,8 +6,9 @@ pipeline {
         maven "M3"
         jdk 'java'
     }
-    properties([parameters([booleanParam(defaultValue: true, name: 'HEADLESS')])])
-
+    parameters {
+        booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Headless browser')
+    }
     stages {
         stage('Build') {
             steps {
@@ -15,7 +16,7 @@ pipeline {
                 git 'https://github.com/dzmitryrak/AllureReporting.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn clean test"
+                sh "mvn clean test -Dheadless=${params.HEADLESS}"
             }
 
             post {
