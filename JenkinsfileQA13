@@ -6,6 +6,7 @@ pipeline {
         maven "M3"
         jdk 'java'
     }
+    properties([parameters([booleanParam(defaultValue: true, name: 'HEADLESS')])])
 
     stages {
         stage('Build') {
