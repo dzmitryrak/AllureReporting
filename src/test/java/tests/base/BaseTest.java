@@ -22,9 +22,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         steps = new GoogleSteps(driver);
-        String variable = "driver";
-        System.out.println("Setting driver into context with variable name " + variable);
-        context.setAttribute(variable, driver);
+        context.setAttribute("driver", driver);
     }
     
     @AfterMethod (alwaysRun = true, description = "Closing Browser")
