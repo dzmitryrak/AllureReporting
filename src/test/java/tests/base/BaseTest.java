@@ -17,7 +17,7 @@ public class BaseTest {
     public WebDriver driver;
     protected GoogleSteps steps;
     
-    @BeforeMethod(description = "Opening Chrome Driver")
+    @BeforeMethod(description = "Opening Browser")
     public void createDriver(ITestContext context) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -27,7 +27,7 @@ public class BaseTest {
         context.setAttribute(variable, driver);
     }
     
-    @AfterMethod (alwaysRun = true)
+    @AfterMethod (alwaysRun = true, description = "Closing Browser")
     public void closeDriver() {
         if(driver != null) {
             driver.quit();
