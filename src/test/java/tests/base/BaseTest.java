@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,13 +19,15 @@ public class BaseTest {
     
     @BeforeMethod(description = "Opening Browser")
     public void createDriver(ITestContext context) {
-        WebDriverManager.chromedriver().setup();
-
-
-        ChromeOptions options = new ChromeOptions();
-        if(System.getProperty("headless", "true").equals("true"))
-            options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+        if(System.getProperty("browser", "chrome").equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions options = new ChromeOptions();
+            if (System.getProperty("headless").equals("true"))
+                options.addArguments("--headless");
+            driver = new ChromeDriver(options);
+        } else if(System.getProperty("browser", "chrome").equalsIgnoreCase("firefox")) {
+            driver = new FirefoxDriver();
+        }
 
 
         steps = new GoogleSteps(driver);
