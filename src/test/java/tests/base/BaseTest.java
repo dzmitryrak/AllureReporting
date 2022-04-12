@@ -1,7 +1,6 @@
 package tests.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,7 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import steps.GoogleSteps;
 
-@Log4j2
 @Listeners(TestListener.class)
 public class BaseTest {
     
@@ -24,6 +22,10 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+         options.addArguments("start-maximized"); // open Browser in maximized mode
+        options.addArguments("disable-infobars"); // disabling infobars
+        options.addArguments("--disable-extensions"); // disabling extensions
+        options.addArguments("--disable-gpu"); // applicable to windows os only
         driver = new ChromeDriver(options);
         steps = new GoogleSteps(driver);
         context.setAttribute("driver", driver);
