@@ -20,7 +20,8 @@ public class BaseTest {
     public void createDriver(ITestContext context) {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
+        options.addArguments("--remote-debugging-port=9222");
+        options.addArguments("no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
          options.addArguments("start-maximized"); // open Browser in maximized mode
         options.addArguments("disable-infobars"); // disabling infobars
