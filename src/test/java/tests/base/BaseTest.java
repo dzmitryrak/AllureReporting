@@ -19,16 +19,14 @@ public class BaseTest {
     @BeforeMethod(description = "Opening Browser")
     public void createDriver(ITestContext context) {
         WebDriverManager.chromedriver().setup();
+
+
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-/*        options.addArguments("--remote-debugging-port=9222");
-        options.addArguments("no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("start-maximized"); // open Browser in maximized mode
-        options.addArguments("disable-infobars"); // disabling infobars
-        options.addArguments("--disable-extensions"); // disabling extensions
-        options.addArguments("--disable-gpu"); // applicable to windows os only*/
+        if(System.getProperty("headless", "true").equals("true"))
+            options.addArguments("--headless");
         driver = new ChromeDriver(options);
+
+
         steps = new GoogleSteps(driver);
         context.setAttribute("driver", driver);
     }
