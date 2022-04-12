@@ -20,13 +20,13 @@ public class BaseTest {
     public void createDriver(ITestContext context) {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-debugging-port=9222");
+/*        options.addArguments("--remote-debugging-port=9222");
         options.addArguments("no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-         options.addArguments("start-maximized"); // open Browser in maximized mode
+        options.addArguments("start-maximized"); // open Browser in maximized mode
         options.addArguments("disable-infobars"); // disabling infobars
         options.addArguments("--disable-extensions"); // disabling extensions
-        options.addArguments("--disable-gpu"); // applicable to windows os only
+        options.addArguments("--disable-gpu"); // applicable to windows os only*/
         driver = new ChromeDriver(options);
         steps = new GoogleSteps(driver);
         context.setAttribute("driver", driver);
