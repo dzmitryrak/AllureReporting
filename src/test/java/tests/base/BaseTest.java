@@ -19,17 +19,9 @@ public class BaseTest {
     
     @BeforeMethod(description = "Opening Browser")
     public void createDriver(ITestContext context) {
-        if(System.getProperty("browser", "chrome").equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            if (System.getProperty("headless").equals("true"))
-                options.addArguments("--headless");
-            driver = new ChromeDriver(options);
-        } else if(System.getProperty("browser", "chrome").equalsIgnoreCase("firefox")) {
-            driver = new FirefoxDriver();
-        }
-
-
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        driver = new ChromeDriver(options);
         steps = new GoogleSteps(driver);
         context.setAttribute("driver", driver);
     }
